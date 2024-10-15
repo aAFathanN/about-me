@@ -1,0 +1,43 @@
+#include <DHT22.h>
+
+#define pinDATA 4
+#define led 2
+#define buzzer 5
+
+DHT22 dht22(pinDATA);
+
+void setup() {
+
+  Serial.begin(115200);
+  Serial.println("/ntest capteur DTH22");
+  pinMode(led, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+
+  digitalWrite(led, LOW);
+  digitalWrite(buzzer, LOW);
+  }
+
+void loop() {
+  float temp = dht22.getTemperature();
+  float humi = dht22.getHumidity();
+
+  if (dht22.getLastError() != dht22.OK){
+    Serial.print("Last error :");
+    Serial.println(dht22.getLastError());
+  }
+
+  Serial.print("humi=");Serial.print(humi, 1);Serial.print("/t");
+  Serial.print("temp=");Serial.println(temp, 1);
+
+  if ((temp < 20 || temp > 25) && (humi < 45 || humi > 65 )) {
+    digitalWrite(led, HIGH);
+    tone(buzzer, 3000, 100 );
+    delay(250);
+  }
+  else {
+    digitalWrite(led, LOW);
+    noTone(buzzer);
+  }
+
+  delay(2000);
+}
