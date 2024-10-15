@@ -1,0 +1,30 @@
+#include <Servo.h>
+
+#define trig 7
+#define echo 4
+
+Servo servo;
+
+void setup() {
+ pinMode(trig, OUTPUT);
+ pinMode(echo, INPUT);
+
+ servo.attach(5);
+}
+
+void loop() {
+ digitalWrite(trig, LOW);
+ delayMicroseconds(2);
+ digitalWrite(trig, HIGH);
+ delayMicroseconds(10);
+ digitalWrite(trig, LOW);
+ long duration =pulseIn(echo, HIGH);
+ float distance = duration * 0.0344 / 2;
+
+ if (distance<= 10) {
+  servo.write(90);
+ }
+ else {
+  servo.write(0);
+ }
+}

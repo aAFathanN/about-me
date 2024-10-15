@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "author": "Faathaann",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-nano", "id": "nano", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -8.1,
+      "left": 178.3,
+      "attrs": { "distance": "58" }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servo1",
+      "top": -41.2,
+      "left": -189.2,
+      "rotate": 180,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "ultrasonic1:GND", "nano:GND.1", "black", [ "v19.2", "h-126" ] ],
+    [ "ultrasonic1:ECHO", "nano:4", "green", [ "v28.8", "h-96.8", "v-124.8", "h-76.8" ] ],
+    [ "ultrasonic1:VCC", "nano:5V", "red", [ "v9.6", "h-124.8" ] ],
+    [ "servo1:PWM", "nano:5", "red", [ "h19.2", "v-19.4", "h86.4" ] ],
+    [ "ultrasonic1:TRIG", "nano:7", "blue", [ "v38.4", "h-86.8", "v-134.4", "h-105.6", "v19.2" ] ],
+    [ "servo1:GND", "nano:GND.1", "black", [ "h9.6", "v48", "h163.2" ] ],
+    [ "servo1:V+", "nano:5V", "red", [ "h9.6", "v67.1", "h134.4" ] ]
+  ],
+  "dependencies": {}
+}
