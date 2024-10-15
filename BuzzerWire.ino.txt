@@ -1,0 +1,69 @@
+include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+#define red 6
+#define green 7
+#define blue 8
+
+const int buzzer = 5;
+const int saklar1 = A3;
+const int saklar2 = A2;
+
+void setup() {
+  lcd.init();
+  lcd.backlight();
+
+  pinMode(red, OUTPUT);
+  pinMode(green, OUTPUT);
+  pinMode(blue, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+  pinMode(saklar1, INPUT_PULLUP);
+  pinMode(saklar2, INPUT_PULLUP);
+
+  digitalWrite(red, LOW);
+  digitalWrite(green, LOW);
+  digitalWrite(blue, LOW);
+  digitalWrite(buzzer, LOW);
+}
+
+void loop() {
+  int kondisi = digitalRead(saklar1);
+  int ketika = digitalRead(saklar2);
+  lcd.clear();
+
+  
+  if (kondisi == 0 && ketika == 1) {
+    lcd.setCursor(0, 0);
+    lcd.print("GAGAL");
+    
+    tone(buzzer, 5000, 100);  
+    digitalWrite(red, HIGH);
+    digitalWrite(green, LOW);  
+    digitalWrite(blue, LOW);   
+    
+    delay(200);
+  } 
+ 
+  else if (kondisi == 1 && ketika == 0) {
+    lcd.setCursor(0, 0);
+    lcd.print("BERHASIL");
+    
+    noTone(buzzer);            
+    digitalWrite(red, LOW);  
+    digitalWrite(green, HIGH);
+    digitalWrite(blue, LOW);   
+    
+    delay(200); 
+  }
+  else {
+    lcd.setCursor(0, 0);
+    lcd.print("Proses");
+    
+    noTone(buzzer);            
+    digitalWrite(red, LOW);  
+    digitalWrite(green, LOW);  
+    digitalWrite(blue, HIGH);  
+    
+    delay(200); 
+  }
+}
