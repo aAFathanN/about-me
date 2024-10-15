@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "author": "Faathaann",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": -79.8, "left": 89.2, "attrs": {} },
+    {
+      "type": "wokwi-arduino-nano",
+      "id": "nano",
+      "top": 3,
+      "left": -46.5,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": -48.3,
+      "left": 368.9,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb1",
+      "top": -63.2,
+      "left": 116.3,
+      "attrs": { "common": "cathode" }
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb2",
+      "top": -63.2,
+      "left": 173.9,
+      "attrs": { "common": "cathode" }
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb3",
+      "top": 47.8,
+      "left": 120.1,
+      "rotate": 180,
+      "attrs": { "common": "cathode" }
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb4",
+      "top": 47.8,
+      "left": 177.7,
+      "rotate": 180,
+      "attrs": { "common": "cathode" }
+    }
+  ],
+  "connections": [
+    [ "nano:2", "bb1:2t.e", "red", [ "h19.2", "v-48" ] ],
+    [ "nano:3", "bb1:4t.e", "green", [ "h28.8", "v-38.4", "h48" ] ],
+    [ "nano:4", "bb1:5t.e", "blue", [ "h38.4", "v-19.2", "h48" ] ],
+    [ "nano:5", "bb1:8t.e", "red", [ "h19.2", "v-19.2", "h96" ] ],
+    [ "nano:6", "bb1:10t.e", "green", [ "h28.8", "v-9.6", "h105.6" ] ],
+    [ "nano:7", "bb1:11t.e", "blue", [ "h0" ] ],
+    [ "bb1:9t.e", "bb1:3t.e", "black", [ "v0" ] ],
+    [ "bb1:13b.h", "bb1:10b.h", "black", [ "v0" ] ],
+    [ "bb1:10b.g", "bb1:4b.g", "black", [ "v0" ] ],
+    [ "rgb3:R", "bb1:5b.j", "", [ "$bb" ] ],
+    [ "rgb3:COM", "bb1:4b.i", "", [ "$bb" ] ],
+    [ "rgb3:G", "bb1:3b.j", "", [ "$bb" ] ],
+    [ "rgb3:B", "bb1:2b.j", "", [ "$bb" ] ],
+    [ "rgb4:R", "bb1:11b.j", "", [ "$bb" ] ],
+    [ "rgb4:COM", "bb1:10b.i", "", [ "$bb" ] ],
+    [ "rgb4:G", "bb1:9b.j", "", [ "$bb" ] ],
+    [ "rgb4:B", "bb1:8b.j", "", [ "$bb" ] ],
+    [ "rgb1:R", "bb1:2t.b", "", [ "$bb" ] ],
+    [ "rgb1:COM", "bb1:3t.c", "", [ "$bb" ] ],
+    [ "rgb1:G", "bb1:4t.b", "", [ "$bb" ] ],
+    [ "rgb1:B", "bb1:5t.b", "", [ "$bb" ] ],
+    [ "rgb2:R", "bb1:8t.b", "", [ "$bb" ] ],
+    [ "rgb2:COM", "bb1:9t.c", "", [ "$bb" ] ],
+    [ "rgb2:G", "bb1:10t.b", "", [ "$bb" ] ],
+    [ "rgb2:B", "bb1:11t.b", "", [ "$bb" ] ],
+    [ "nano:8", "bb1:5b.h", "red", [ "h19.2", "v57.6" ] ],
+    [ "nano:9", "bb1:3b.h", "green", [ "h19.2", "v57.6" ] ],
+    [ "nano:10", "bb1:2b.h", "blue", [ "h9.6", "v67.2" ] ],
+    [ "nano:11", "bb1:11b.h", "red", [ "h9.6", "v76.8" ] ],
+    [ "nano:12", "bb1:9b.h", "green", [ "h9.6", "v86.4" ] ],
+    [ "nano:13", "bb1:8b.h", "blue", [ "v0", "h-9.6", "v153.6", "h76.8", "v-67.2" ] ],
+    [ "bb1:13b.j", "bb1:bn.11", "black", [ "v0" ] ],
+    [ "bb1:13b.f", "bb1:9t.d", "black", [ "v0" ] ],
+    [ "bb1:bn.1", "nano:GND.2", "black", [ "v-1.3", "h-36.8", "v-38.4" ] ],
+    [ "ldr1:GND", "nano:GND.1", "black", [ "v76.8", "h-470", "v-48" ] ],
+    [ "ldr1:AO", "nano:A0", "green", [ "v86.4", "h-460.1", "v-153.6" ] ],
+    [ "ldr1:VCC", "nano:5V", "red", [ "v96", "h-499.2", "v-86.4" ] ]
+  ],
+  "dependencies": {}
+}
